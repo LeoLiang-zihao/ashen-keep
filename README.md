@@ -1,12 +1,12 @@
 # Ashen Keep
 
-Ashen Keep is a small Python roguelike-lite library and command-line game. The player explores Slop Keep, a compact branching dungeon, collects simple supplies, fights monsters, and wins by defeating The Last Warden.
+Ashen Keep is my small Python roguelike-lite library and command-line game. In the game, the player explores Slop Keep, a compact branching dungeon, collects simple supplies, fights monsters, and wins by defeating The Last Warden.
 
-The project is intentionally small: it focuses on clean architecture, tests, style consistency, documentation, and a clear separation between the underlying Python library and the CLI interface.
+I kept the project intentionally small so I could focus on clean architecture, tests, style consistency, documentation, and a clear separation between the underlying Python library and the CLI interface.
 
 ## Architecture
 
-The library lives in `src/ashen_keep`:
+I organized the library in `src/ashen_keep`:
 
 - `models.py`: player, monster, item, room, game state, and action result data models.
 - `content.py`: static room, item, monster, difficulty, and flavor text content.
@@ -16,7 +16,7 @@ The library lives in `src/ashen_keep`:
 - `rendering.py`: turns game state into display text.
 - `cli.py`: thin command-line interface.
 
-The CLI delegates to the library. Core rules are testable without interactive input.
+The CLI delegates to the library, so I can test the core rules without interactive input.
 
 ## Setup
 
@@ -77,7 +77,7 @@ mypy src tests
 
 ## Development practices
 
-This project uses:
+I used:
 
 - Ruff for style consistency.
 - Pytest for automated tests.
@@ -87,4 +87,4 @@ This project uses:
 
 ## Generative AI usage
 
-Generative AI usage is documented in [`docs/AI_USAGE.md`](docs/AI_USAGE.md).
+I documented my generative AI usage in [`docs/AI_USAGE.md`](docs/AI_USAGE.md).

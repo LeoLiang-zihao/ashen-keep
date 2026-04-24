@@ -1,6 +1,6 @@
 # Generative AI Usage
 
-This project used generative AI tools. The student reviewed the outputs and remains responsible for the submitted work.
+I used generative AI tools while building this project. I reviewed the AI outputs, edited them where needed, and I am responsible for the final submitted work.
 
 ## Tools used
 
@@ -8,7 +8,7 @@ This project used generative AI tools. The student reviewed the outputs and rema
 
 ## How AI was used
 
-AI was used to:
+I used AI to:
 
 - brainstorm project ideas from the course prompt,
 - compare possible scopes for a solo final project,
@@ -21,7 +21,7 @@ AI was used to:
 
 ## What AI produced
 
-AI produced drafts of:
+AI helped draft:
 
 - the project design spec,
 - the implementation plan,
@@ -34,8 +34,8 @@ AI produced drafts of:
 
 ## Human review and edits
 
-The student selected the final project direction, approved the scope, chose the boss victory condition, selected the easy-by-default design, chose the project name, and reviewed generated plans and code before submission. The student ran tests and style checks locally and used Git/GitHub workflow practices for the final submission.
+I chose the final project direction, set the scope, picked the boss victory condition, kept the game easy by default, chose the project name, and reviewed the generated plans and code before submission. I also ran tests and style checks locally and used Git/GitHub workflow practices for the final submission.
 
 ## Limitations
 
-AI-generated code and text can contain mistakes. The project relies on automated tests, Ruff, mypy, manual review, and manual gameplay checks to catch issues before submission.
+AI-generated code and text can contain mistakes, so I did not treat it as automatically correct. I used automated tests, Ruff, mypy, manual review, and manual gameplay checks to catch issues before submission.
