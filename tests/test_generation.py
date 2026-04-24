@@ -43,8 +43,9 @@ def test_create_dungeon_has_reachable_boss() -> None:
     assert state.current_room_id == "gatehouse"
     assert state.boss_room_id == "redoubt"
     assert boss_is_reachable(graph, state.current_room_id, state.boss_room_id)
-    assert state.rooms[state.boss_room_id].monster is not None
-    assert state.rooms[state.boss_room_id].monster.is_boss
+    boss = state.rooms[state.boss_room_id].monster
+    assert boss is not None
+    assert boss.is_boss
 
 
 def test_create_dungeon_is_seed_reproducible() -> None:

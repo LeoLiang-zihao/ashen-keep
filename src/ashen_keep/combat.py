@@ -16,8 +16,7 @@ def attack(player: Player, monster: Monster, rng: Random) -> ActionResult:
     if not monster.is_alive:
         return ActionResult(
             message=(
-                f"You strike {monster.name} for {player_damage} damage "
-                "and defeat it."
+                f"You strike {monster.name} for {player_damage} damage and defeat it."
             )
         )
     monster_damage = _monster_damage(monster, player, rng, defense_bonus=0)
