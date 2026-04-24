@@ -1,4 +1,5 @@
 from ashen_keep.engine import (
+    drink_potion,
     get_available_commands,
     move,
     perform_combat_action,
@@ -74,3 +75,35 @@ def test_defeating_boss_wins_game() -> None:
 
     assert result.status is GameStatus.WON
     assert state.status is GameStatus.WON
+
+
+def test_drink_potion_outside_combat_heals_without_fighting() -> None:
+    state = start_game(seed=7)
+    state.player.hp = 20
+    before_potions = state.player.potions
+
+    result = drink_potion(state)
+
+    assert state.player.hp == 28
+    assert state.player.potions == before_potions - 1
+    assert "recover 8 hp" in result.message.lower()
+
+
+def test_drink_potion_at_full_hp_does_not_consume_potion() -> None:
+    state = start_game(seed=7)
+    before_potions = state.player.potions
+
+    result = drink_potion(state)
+
+    assert state.player.hp == state.player.max_hp
+    assert state.player.potions == before_potions
+    assert "already at full hp" in result.message.lower()
+
+
+def test_available_commands_include_potion_outside_combat_when_damaged() -> None:
+    state = start_game(seed=7)
+    state.player.hp = 20
+
+    commands = get_available_commands(state)
+
+    assert "potion" in commands

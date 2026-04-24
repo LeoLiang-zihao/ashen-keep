@@ -1,6 +1,7 @@
 import subprocess
 import sys
 
+from ashen_keep.cli import handle_command
 from ashen_keep.engine import start_game
 from ashen_keep.rendering import render_room, render_status
 
@@ -34,3 +35,13 @@ def test_module_help_runs() -> None:
 
     assert completed.returncode == 0
     assert "Ashen Keep" in completed.stdout
+
+
+def test_potion_command_heals_outside_combat() -> None:
+    state = start_game(seed=7)
+    state.player.hp = 20
+
+    output = handle_command(state, "potion")
+
+    assert state.player.hp == 28
+    assert "recover 8 hp" in output.lower()

@@ -6,6 +6,7 @@ import argparse
 
 from ashen_keep.content import TITLE_ART
 from ashen_keep.engine import (
+    drink_potion,
     get_available_commands,
     move,
     perform_combat_action,
@@ -78,6 +79,8 @@ def handle_command(state: GameState, command: str) -> str:
         return "Available: " + ", ".join(get_available_commands(state))
     if command == "take":
         return render_result(take_item(state))
+    if command == "potion" and not state.current_room.has_living_monster:
+        return render_result(drink_potion(state))
     if command in {"attack", "defend", "potion"}:
         result = perform_combat_action(state, command)
         return render_result(result)

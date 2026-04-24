@@ -50,6 +50,23 @@ def take_item(state: GameState) -> ActionResult:
     return _apply_item(state, item)
 
 
+def drink_potion(state: GameState) -> ActionResult:
+    """Drink a potion outside combat without triggering a monster attack."""
+    if state.status is not GameStatus.IN_PROGRESS:
+        return ActionResult("The game is already over.", status=state.status)
+    if state.player.potions <= 0:
+        return ActionResult("You have no potions left.")
+    if state.player.hp >= state.player.max_hp:
+        return ActionResult("You are already at full HP.")
+    state.player.potions -= 1
+    heal_amount = DIFFICULTIES[state.difficulty].potion_heal
+    healed = state.player.heal(heal_amount)
+    return ActionResult(
+        f"You drink a potion and recover {healed} HP. "
+        f"Potions left: {state.player.potions}."
+    )
+
+
 def perform_combat_action(state: GameState, action: str) -> ActionResult:
     """Perform one combat action against the current room's monster."""
     if state.status is not GameStatus.IN_PROGRESS:
@@ -82,8 +99,12 @@ def get_available_commands(state: GameState) -> list[str]:
     if state.status is not GameStatus.IN_PROGRESS:
         return ["quit"]
     commands = ["look", "status", "help", "quit"]
+    if state.player.potions > 0 and state.player.hp < state.player.max_hp:
+        commands.append("potion")
     if state.current_room.has_living_monster:
-        commands.extend(["attack", "defend", "potion"])
+        commands.extend(["attack", "defend"])
+        if "potion" not in commands and state.player.potions > 0:
+            commands.append("potion")
     else:
         commands.extend(
             [f"move {direction}" for direction in sorted(state.current_room.exits)]
